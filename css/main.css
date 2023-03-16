@@ -1,0 +1,233 @@
+@media (min-width: 1200px) {
+  /* This code sets the background to blue on ALL browsers that are larger than 1200px*/
+  body{
+    background:blue;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #262620;
+  margin-left: 15%;
+  text-transform: uppercase;
+}
+
+.flexbox {
+    background-color: #2b6210;
+    padding: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+  }
+
+.flexbox > div {
+    background-color: green;
+    margin: 6px;
+    height: 80px;
+    width: 100px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 18px;
+    flex: auto;
+    overflow-wrap: normal;
+  }
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+   font-size: 245%;
+   color: #1d94a1;
+   font-family: 'Josefin Sans', sans-serif;
+   background-color: #5e6651;
+   border-radius:.5em;
+   padding: 1.6%
+
+
+}
+
+#syncy {
+  width: 20%;
+  margin-left: 6px;
+  float:right;
+  position:static;
+}
+
+div {
+  font-size:120%;
+  font-family: 'Josefin Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding:10px;
+  /*margin:*/
+  text-transform: uppercase;
+}
+
+button {
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size:90%;
+  background-color:#a3a07f;
+  /*height: */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  color: #000;
+  border: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  min-width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.btn2 {
+  width: 23%;
+
+}
+
+input {
+  display: flex;
+  margin-left: 20px;
+  text-align: center;
+  border-radius: 10px;
+
+}
+
+.list {
+  align-items: stretch;
+  display: inline-block;
+  scrollbar-width: medium;
+  scrollbar-color: #544929;
+
+}
+
+ .itemList {
+   checkbox-size: 15px;
+ }
+
+ul {
+  display: inline-block;
+  align-items:left;
+  font-size: 160%;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #7cc4d6;
+  padding-right: 5%;
+
+  /*border-style: solid;
+  border-width: 5px;
+  border-radius: 5%;
+  border-color: #887cd6; */
+}
+
+li {
+  list-style:none;
+  display:table-row;
+  align-items: left;
+  justify-content: center;
+}
+
+.checkbox{
+  display:inline;
+  float: right;
+  padding-left:5em;
+  height: 15px;
+}
+
+input[type="checkbox"] {
+  display:inline-block;
+  float: right;
+  padding-left:20em;
+}
+
+#itemList li input[type="checkbox"] {
+  margin-right: 10px;
+  height: 22px;
+  width: 22px;
+  border-radius: 40%;
+  border: 2px solid #ccc;
+  background-color: #fff;
+}
+
+
+.archive {
+  position: absolute;
+       bottom: 0;
+}
+
+.itemList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+}
+
+
+:root, :host {
+  --fa-style-family-classic: 'Font Awesome 6 Free';
+  --fa-font-regular: normal 400 1em/1 'Font Awesome 6 Free';
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-regular-400.woff2") format("woff2"), url("../webfonts/fa-regular-400.ttf") format("truetype");
+}
+
+i {
+  margin-left: 10px;
+}
+
+.far,
+.fa-regular {
+  font-weight: 400; }
+/.glow > header{
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+
+  /* Below, you will see styles for the checkboxes if all goes well.... */

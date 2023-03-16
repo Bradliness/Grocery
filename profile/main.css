@@ -1,0 +1,107 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #262620;
+  /*margin-left: 15%; */
+  text-transform: uppercase;
+}
+
+.flexbox {
+    background-color: #2b6210;
+    padding: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+  }
+
+.flexbox > div {
+    background-color: green;
+    margin: 6px;
+    height: 80px;
+    width: 100px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 18px;
+    flex: auto;
+    overflow-wrap: normal;
+  }
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+   font-size: 245%;
+   color: #1d94a1;
+   font-family: 'Josefin Sans', sans-serif;
+   background-color: #5e6651;
+   border-radius:.5em;
+   padding: 1.6%
+}
+
+div {
+  font-size:120%;
+  font-family: 'Josefin Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding:10px;
+  /*margin:*/
+  text-transform: uppercase;
+}
+
+button {
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size:90%;
+  background-color:#a3a07f;
+  /*height: */
+}
+
+.btn2 {
+  width: 23%;
+
+}
+
+
+:root, :host {
+  --fa-style-family-classic: 'Font Awesome 6 Free';
+  --fa-font-regular: normal 400 1em/1 'Font Awesome 6 Free';
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-regular-400.woff2") format("woff2"), url("../webfonts/fa-regular-400.ttf") format("truetype");
+}
+
+i {
+  margin-left: 10px;
+}
+
+.far,
+.fa-regular {
+  font-weight: 400; }
+/.glow > header{
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+
+  /* Below, you will see styles for the checkboxes if all goes well.... */

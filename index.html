@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Grocery List</title>
+    <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <!--what is the next link? -->
+    <link rel="">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#newItem").append("<input type='checkbox'/>");
+    });
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+<!--  is this the right link? -->
+<script src="https://kit.fontawesome.com/578c867767.js" crossorigin="anonymous"></script>
+<!-- or is this the right link?? -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/578c867767.js" crossorigin="anonymous"></script>
+<style>
+  .myStyle {
+  display:inline-block;
+  align-items: flex-end;
+  justify-content: space-around;
+  }
+  #itemList li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    #itemList li input[type="checkbox"] {
+      margin-right: 10px;
+      height: 30px;
+    }
+</style>
+  </head>
+  <body>
+    <div class="header">
+    <header>Grocery List</header>
+  </div>
+    <div class="flexbox">
+      <button class="btn" onclick="window.location.href = 'profile/profile.html';">CONTACTS<i class="fa fa-user" aria-hidden="true"></i></button>
+      <button class="btn" onclick="window.location.href = 'archive/archive.html';">HISTORY<i class="fa fa-file"></i></button>
+      <button class="btn">SETTINGS<i class="fa fa-gear"></i></button>
+    </div>
+    <div class="flexbox">
+        <button class="btn2">NEW LIST<i class="fa fa-list"></i></button>
+      <input type="text" id="itemInput" placeholder="Enter item here">
+      <!-- this below is the thing that brings up a keyboard on your phone -->
+    <script>
+      document.addEventListener("touchstart", function() {
+        document.activeElement.focus();
+      });
+    </script>
+
+    <!--this is the input box and list function -->
+      <button class="btn2" onclick="addItem()">ADD ITEM<i class="fa fa-plus"></i></button>
+    </div>
+    <!-- <div class="list" style= "height: 400px; overflow-y: scroll;"> -->
+    <ul id="itemList"></ul>
+
+
+     <div class="archive">
+       <button class="btn" id="archiveButton" onclick="moveToArchive()">SEND TO ARCHIVE<i class="fa fa-folder"></i></button>
+       <button id="syncy" class="btn">SYNC<i class="fas fa-sync"></i></button>
+       <button class="btn" id= "deleteButton" onclick="deleteChecked()">DELETE CHECKED ITEMS<i class="fa fa-trash"></i></button>
+     </div>
+
+
+
+
+   <script>
+
+
+
+      function addItem() {
+        var input = document.getElementById("itemInput");
+        var item = input.value;
+         input.value = "";
+        var list = document.getElementById("itemList");
+        var newItem = document.createElement("li");
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        newItem.appendChild(checkbox);
+        newItem.innerHTML += item;
+        list.appendChild(newItem);
+      }
+
+
+
+      function moveToArchive() {
+      var ul = document.getElementById("itemList");
+      var items = ul.getElementsByTagName("li");
+      var data = "";
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].getElementsByTagName("input")[0].checked) {
+          data += items[i].innerHTML + "\n";
+          $("#archiveList").append(items[i]);
+         ul.removeChild(items[i]);
+          i--;
+        }
+      }
+      if (data !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "archive/save.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+          }
+        };
+        xhr.send("data=" + encodeURIComponent(data));
+      }
+    }
+
+    function loadList() {
+    var list = localStorage.getItem("groceryList");
+    if (list) {
+      document.getElementById("itemList").innerHTML = list;
+    }
+  }
+
+  loadList();
+
+  function deleteChecked() {
+    var list = document.getElementById("itemList");
+    var items = list.getElementsByTagName("li");
+    for (var i = 0; i < items.length; i++) {
+      var checkbox = items[i].getElementsByTagName("input")[0];
+      if (checkbox.checked) {
+        list.removeChild(items[i]);
+        i--;
+      }
+    }
+  }
+
+  function saveList() {
+    var list = document.getElementById("itemList").innerHTML;
+  localStorage.setItem("groceryList", list);
+  // var list = document.getElementById("itemList");
+   var items = list.getElementsByTagName("li");
+   var data = "";
+   for (var i = 0; i < items.length; i++) {
+     var checkbox = items[i].getElementsByTagName("input")[0];
+     var item = items[i].innerHTML.replace(/<input[^>]*>/, "").trim();
+     if (checkbox.checked) {
+         item = "[x] " + item;
+       } else {
+         item = "[ ] " + item;
+       }
+       data += item + "\n";
+     }
+   var date = new Date().toISOString().slice(0, 10);
+   var filename = "list_" + date + ".txt";
+   var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+   saveAs(blob, filename);
+
+   // Navigate to archive page
+   var archivePath = "archive/archive.html#" + date + "/archiveList";
+  /* window.location.href = archivePath;
+} */
+// Save current list to archive page
+  var archiveFilename = "list_" + date + ".html";
+  var archiveData = "<html><head><title>" + filename + "</title></head><body>" + list.innerHTML + "</body></html>";
+  var archiveBlob = new Blob([archiveData], {type: "text/html;charset=utf-8"});
+  saveAs(archiveBlob, archivePath + "/" + archiveFilename);
+ }
+
+ var archiveButton = document.getElementById("archiveButton");
+ archiveButton.addEventListener("click", saveList);
+
+  var deleteButton = document.getElementById("deleteButton");
+  deleteButton.addEventListener("click", deleteChecked);
+
+
+
+   </script>
+
+
+  </div>
+
+
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</body>
+<footer>
+</footer>
+</html>
